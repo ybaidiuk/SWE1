@@ -45,63 +45,73 @@ public class FahrzeugClient {
 
             FahrzeugManagement fahrzeugManagement = new FahrzeugManagement(args[0]);
 
-            if (Objects.equals(args[1], "show")) {
 
-                if (args.length == 2) {
-                    List<Fahrzeug> list = fahrzeugManagement.getSavedIdList();
+            switch (args[1]) {
+                case "show":
+                    if (args.length == 2) {
+                        List<Fahrzeug> list = fahrzeugManagement.getSavedIdList();
 
-                    for (Fahrzeug f : list) {
-                        System.out.println(f);
+                        for (Fahrzeug f : list) {
+                            System.out.println(f);
+                        }
+
+
+                    } else if (args.length == 3)
+                        fahrzeugManagement.alleDatenEinesFahrzeugAusgeben(Integer.parseInt(args[2]));
+                    break;
+
+
+
+                case "add":
+                    if (args[2].equals("lkw")) {
+                        fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]));
+                    } else if (args[2].equals("pkw")) {
+                        fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]), args[8]);
+                    }
+                    break;
+
+
+                case "del":
+
+                    if (args.length < 3) {
+                        System.out.println("Fellt 3 Parameter (id)");
+                        System.exit(1);
                     }
 
+                    fahrzeugManagement.bestehendeFahrzeugeLoeschen(Integer.parseInt(args[2]));
 
-                } else if (args.length == 3)
-                    fahrzeugManagement.alleDatenEinesFahrzeugAusgeben(Integer.parseInt(args[2]));
+                    break;
+                case "count":
+                    if (args.length == 2) {
+                        System.out.println(fahrzeugManagement.gesamtzahlFahrzeugeBerechnen());
 
+                    } else if (args[2].equals("lkw")) {
+                        System.out.println(fahrzeugManagement.gesamtzahlDerLKWBerechnen());
+                    } else if (args[2].equals("pkw")) {
+                        System.out.println(fahrzeugManagement.gesamtzahlDerPKWBerechnen());
+                    }
+                    break;
+                case "meanage":
+                    System.out.println(fahrzeugManagement.durchschnittsAlterAllerFahrzeugeBerechnen());
+                    break;
+                case "meanprice":
+                    if (args.length == 2) {
+                        System.out.println(fahrzeugManagement.durchschnittsPreisallerFahrzeugeBerechnen());
+                    } else if (args[2].equals("lkw")) {
+                        System.out.println(fahrzeugManagement.durchschnittsPreisAllerLkwBerechnen());
+                    } else if (args[2].equals("pkw")) {
+                        System.out.println(fahrzeugManagement.durchschnittsPreisAllerPkwBerechnen());
+                    }
+                    break;
 
-            } else if (Objects.equals(args[1], "add")) {
-                if (args[2].equals("lkw")) {
-                    fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]));
-                } else if (args[2].equals("pkw")) {
-                    fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]), args[8]);
-
-                }
-            } else if (Objects.equals(args[1], "del")) {
-
-                if (args.length < 3) {
-                    System.out.println("Fellt 3 Parameter (id)");
-                    return;
-                }
-
-                fahrzeugManagement.bestehendeFahrzeugeLoeschen(Integer.parseInt(args[2]));
-
-            } else if (Objects.equals(args[1], "count")) {
-                if (args.length == 2) {
-                    System.out.println(fahrzeugManagement.gesamtzahlFahrzeugeBerechnen());
-
-                } else if (args[2].equals("lkw")) {
-                    System.out.println(fahrzeugManagement.gesamtzahlDerLKWBerechnen());
-                } else if (args[2].equals("pkw")) {
-                    System.out.println(fahrzeugManagement.gesamtzahlDerPKWBerechnen());
-                }
-
-            } else if (Objects.equals(args[1], "meanage")) {
-                System.out.println(fahrzeugManagement.durchschnittsAlterAllerFahrzeugeBerechnen());
-
-            } else if (Objects.equals(args[1], "meanprice")) {
-                if (args.length == 2) {
-                    System.out.println(fahrzeugManagement.durchschnittsPreisallerFahrzeugeBerechnen());
-                } else if (args[2].equals("lkw")) {
-                    System.out.println(fahrzeugManagement.durchschnittsPreisAllerLkwBerechnen());
-                } else if (args[2].equals("pkw")) {
-                    System.out.println(fahrzeugManagement.durchschnittsPreisAllerPkwBerechnen());
-                }
-
-            } else if (Objects.equals(args[1], "oldest")) {
-                ArrayList<Integer> aList = fahrzeugManagement.aeltesteFahrzeugSuchen();
-                for (int i : aList)
-                    System.out.println("Id: " + i);
-            } else System.exit(1);
+                case "oldest":
+                    ArrayList<Integer> aList = fahrzeugManagement.aeltesteFahrzeugSuchen();
+                    for (int i : aList)
+                        System.out.println("Id: " + i);
+                    break;
+                default:
+                    System.exit(1);
+            }
 
         } catch (IndexOutOfBoundsException e) {
             System.err.println("Fellt Parameter");
