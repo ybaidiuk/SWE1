@@ -58,53 +58,56 @@ public class FahrzeugClient {
 
                     } else if (args.length == 3)
                         fahrzeugManagement.alleDatenEinesFahrzeugAusgeben(Integer.parseInt(args[2]));
+                    else if (args.length > 3) throw new IllegalArgumentException("Arguments ist Falsh!");
                     break;
-
 
 
                 case "add":
                     if (args[2].equals("lkw")) {
+                        if (args.length != 8) throw new IllegalArgumentException("Arguments ist Falsh!");
                         fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]));
                     } else if (args[2].equals("pkw")) {
+                        if (args.length != 9) throw new IllegalArgumentException("Arguments ist Falsh!");
                         fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]), args[8]);
                     }
                     break;
 
 
                 case "del":
-
-                    if (args.length < 3) {
-                        System.out.println("Fellt 3 Parameter (id)");
-                        System.exit(1);
-                    }
-
+                    if (args.length != 3) throw new IllegalArgumentException("Arguments ist Falsh!");
                     fahrzeugManagement.bestehendeFahrzeugeLoeschen(Integer.parseInt(args[2]));
-
                     break;
+
                 case "count":
-                    if (args.length == 2) {
+                    if (args.length == 2)
                         System.out.println(fahrzeugManagement.gesamtzahlFahrzeugeBerechnen());
-
-                    } else if (args[2].equals("lkw")) {
+                    else if (args.length > 3)
+                        throw new IllegalArgumentException("Arguments ist Falsh!");
+                    else if (args[2].equals("lkw"))
                         System.out.println(fahrzeugManagement.gesamtzahlDerLKWBerechnen());
-                    } else if (args[2].equals("pkw")) {
+                    else if (args[2].equals("pkw"))
                         System.out.println(fahrzeugManagement.gesamtzahlDerPKWBerechnen());
-                    }
+                    else throw new IllegalArgumentException("Arguments ist Falsh");
                     break;
+
                 case "meanage":
+                    if (args.length != 2)
+                        throw new IllegalArgumentException("Arguments ist Falsh!");
                     System.out.println(fahrzeugManagement.durchschnittsAlterAllerFahrzeugeBerechnen());
                     break;
                 case "meanprice":
-                    if (args.length == 2) {
+                    if (args.length == 2)
                         System.out.println(fahrzeugManagement.durchschnittsPreisallerFahrzeugeBerechnen());
-                    } else if (args[2].equals("lkw")) {
+                    else if (args.length != 3)
+                        throw new IllegalArgumentException("Arguments ist Falsh!");
+                    else if (args[2].equals("lkw"))
                         System.out.println(fahrzeugManagement.durchschnittsPreisAllerLkwBerechnen());
-                    } else if (args[2].equals("pkw")) {
+                    else if (args[2].equals("pkw"))
                         System.out.println(fahrzeugManagement.durchschnittsPreisAllerPkwBerechnen());
-                    }
                     break;
 
                 case "oldest":
+                    if (args.length != 2) throw new IllegalArgumentException("Arguments ist Falsh!");
                     ArrayList<Integer> aList = fahrzeugManagement.aeltesteFahrzeugSuchen();
                     for (int i : aList)
                         System.out.println("Id: " + i);
