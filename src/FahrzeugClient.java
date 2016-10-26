@@ -16,12 +16,12 @@ public class FahrzeugClient {
 
 //    =============
 //    find -name "*.java" > sources.txt
-//    javac -d a -encoding ISO-8859-1  -cp a @sources.txt
+//    javac -d bin -encoding ISO-8859-1  -cp a @sources.txt
 //    javadoc -d doc -encoding ISO-8859-1  @sources.txt
 
 //===================
-//    java FahrzeugClient b add lkw 1 Iveco "Eurocargo ML80E" 2014 18000.5
-//    java FahrzeugClient b add pkw 3 Volkswagen Beetle 2015 15000.00 2016-03-12
+//    java FahrzeugClient a add lkw 1 Iveco "Eurocargo ML80E" 2014 18000.5
+//    java FahrzeugClient a add pkw 3 Volkswagen Beetle 2015 15000.00 2016-03-12
 
     /**
      * @param args args [0] Pfad der Datenquelle. Falls die Datei/Ordner nicht existiert soll sie/er erstellt werden.
