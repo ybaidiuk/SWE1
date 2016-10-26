@@ -36,7 +36,6 @@ public class PKW extends Fahrzeug implements Serializable {
     public void setDatum(String d) {
         try {
             if (d.isEmpty()) {
-                System.exit(1);
                 throw new IllegalArgumentException("datum is empty");
             } else
                 this.datum = LocalDate.parse(d);
