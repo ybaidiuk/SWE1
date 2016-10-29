@@ -145,8 +145,6 @@ public class JunitTest {
     }
 
 
-
-
     @Test(expected = IllegalArgumentException.class)
     public void testSetMarke() {
         FahrzeugManagement fm = new FahrzeugManagement("Junit.ser");
@@ -235,6 +233,30 @@ public class JunitTest {
         FahrzeugManagement fm = new FahrzeugManagement("Junit.ser");
         fm.getSavedIdList().clear();
         fm.neueFahrzeugeHinzufuegen(6, "Ford", "Fokus", 2014, 249, "adfafaf3d");
+    }
+
+    @Test
+    public void testDoubleFormatPriseLkw() {
+        LKW p1 = new LKW(2, "Tesla Motors", "Model S", 2015, 1000);
+        assertEquals(true, p1.toString().contains("950.00"));
+    }
+
+    @Test
+    public void testDoubleFormatGrundPriseLkw() {
+        LKW p1 = new LKW(2, "Tesla Motors", "Model S", 2015, 1000);
+        assertEquals(true, p1.toString().contains("1000.00"));
+    }
+
+    @Test
+    public void testDoubleFormatPrisePkw() {
+        PKW p1 = new PKW(2, "Tesla Motors", "Model S", 2015, 1000, "2016-08-12");
+        assertEquals(true, p1.toString().contains("950.00"));
+    }
+
+    @Test
+    public void testDoubleFormatGrundPrisePkw() {
+        PKW p1 = new PKW(2, "Tesla Motors", "Model S", 2015, 1000, "2016-08-12");
+        assertEquals(true, p1.toString().contains("1000.00"));
     }
 
 
