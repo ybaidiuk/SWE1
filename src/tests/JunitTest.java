@@ -6,6 +6,7 @@ import at.ac.univie.swe2016.fm.fahrzeuge.PKW;
 import swe2016.fm.fahrzeuge.dao.SerializedFahrzeugDAO;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class JunitTest {
         SerializedFahrzeugDAO sfd = new SerializedFahrzeugDAO("Junit.ser");
         assertEquals(995.00, sfd.getFahrzeugbyId(1).getGrundpreis(), 0);
         assertEquals(6666.00, sfd.getFahrzeugbyId(2).getGrundpreis(), 0);
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
 
@@ -36,6 +39,8 @@ public class JunitTest {
         fm.neueFahrzeugeHinzufuegen(1, "Mercedes", "Fyra", 2011, 10000);
         fm.bestehendeFahrzeugeLoeschen(1);
         assertEquals(0, fm.getSavedIdList().size());
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
@@ -49,6 +54,8 @@ public class JunitTest {
         fm2.neueFahrzeugeHinzufuegen(2, "Mercedes", "Fyra", 2011, 10000);
         fm2.neueFahrzeugeHinzufuegen(5, "Mercedes", "Fyra", 2011, 10000, "2015-08-12");
         assertEquals(3, fm2.gesamtzahlFahrzeugeBerechnen());
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
@@ -62,6 +69,8 @@ public class JunitTest {
         fm2.neueFahrzeugeHinzufuegen(2, "Mercedes", "Fyra", 2011, 10000);  // +1
         fm2.neueFahrzeugeHinzufuegen(5, "Mercedes", "Fyra", 2011, 10000, "2015-08-12"); // pkw
         assertEquals(2, fm2.gesamtzahlDerLKWBerechnen());
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
@@ -75,6 +84,8 @@ public class JunitTest {
         fm2.neueFahrzeugeHinzufuegen(2, "Mercedes", "Fyra", 2011, 10000, "2015-08-12");
         fm2.neueFahrzeugeHinzufuegen(5, "Mercedes", "Fyra", 2011, 10000);
         assertEquals(2, fm2.gesamtzahlDerPKWBerechnen());
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
@@ -87,6 +98,8 @@ public class JunitTest {
         fm2.neueFahrzeugeHinzufuegen(123, "Mercedes", "Fyra", 2001, 10);
         fm2.neueFahrzeugeHinzufuegen(2, "Mercedes", "Fyra", 2006, 29, "2015-08-12");
         assertEquals(12.5, fm2.durchschnittsAlterAllerFahrzeugeBerechnen(), 0);
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
@@ -99,6 +112,8 @@ public class JunitTest {
         fm2.neueFahrzeugeHinzufuegen(123, "Mercedes", "Fyra", 2001, 10);
         fm2.neueFahrzeugeHinzufuegen(2, "Mercedes", "Fyra", 2006, 29, "2015-08-12");
         assertEquals((10 * 0.8 + 29 * 0.85) / 2, fm2.durchschnittsPreisallerFahrzeugeBerechnen(), 0);
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
@@ -112,6 +127,8 @@ public class JunitTest {
         fm2.neueFahrzeugeHinzufuegen(2, "Mercedes", "Fyra", 2006, 29, "2016-08-12"); //   24.65  15%
         fm2.neueFahrzeugeHinzufuegen(3, "Mercedes", "Fyra", 2015, 249, "2015-08-12"); //7% 231.57
         assertEquals((249 * 0.93 + 29 * 0.85) / 2.0, fm2.durchschnittsPreisAllerPkwBerechnen(), 0.1);
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
@@ -125,10 +142,12 @@ public class JunitTest {
         fm2.neueFahrzeugeHinzufuegen(2, "Mercedes", "Fyra", 2014, 29);
         fm2.neueFahrzeugeHinzufuegen(3, "Mercedes", "Fyra", 2014, 249, "2015-08-12");
         assertEquals((10 * 0.80 + 29 * 0.90) / 2.0, fm2.durchschnittsPreisAllerLkwBerechnen(), 0);
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
-    public void testoldest() {
+    public void testOldest() {
         FahrzeugManagement fm = new FahrzeugManagement("Junit.ser");
         fm.getSavedIdList().clear();
 
@@ -142,6 +161,8 @@ public class JunitTest {
         //oldest 2 3 6
         List<Integer> expected = Arrays.asList(2, 3, 6);
         assertEquals(expected, fm.aeltesteFahrzeugSuchen());
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
 
@@ -150,6 +171,8 @@ public class JunitTest {
         FahrzeugManagement fm = new FahrzeugManagement("Junit.ser");
         fm.getSavedIdList().clear();
         fm.neueFahrzeugeHinzufuegen(6, "", "Fyra", 2015, 249, "2014-08-12");
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -157,6 +180,8 @@ public class JunitTest {
         FahrzeugManagement fm = new FahrzeugManagement("Junit.ser");
         fm.getSavedIdList().clear();
         fm.neueFahrzeugeHinzufuegen(6, "Ford", "", 2013, 249, "2014-08-12");
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -164,6 +189,8 @@ public class JunitTest {
         FahrzeugManagement fm = new FahrzeugManagement("Junit.ser");
         fm.getSavedIdList().clear();
         fm.neueFahrzeugeHinzufuegen(6, "Ford", "Fokus", 2018, 249);
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -171,6 +198,8 @@ public class JunitTest {
         FahrzeugManagement fm = new FahrzeugManagement("Junit.ser");
         fm.getSavedIdList().clear();
         fm.neueFahrzeugeHinzufuegen(6, "Ford", "Fokus", 2014, -249);
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
@@ -211,6 +240,8 @@ public class JunitTest {
         fm.getSavedIdList().clear();
         fm.neueFahrzeugeHinzufuegen(6, "Ford", "Fokus", 2014, 249);
         fm.neueFahrzeugeHinzufuegen(6, "Ford", "Fokus", 2014, 249);
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -226,6 +257,8 @@ public class JunitTest {
         FahrzeugManagement fm = new FahrzeugManagement("Junit.ser");
         fm.getSavedIdList().clear();
         fm.neueFahrzeugeHinzufuegen(6, "Ford", "Fokus", 2014, 249, "");
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -233,6 +266,8 @@ public class JunitTest {
         FahrzeugManagement fm = new FahrzeugManagement("Junit.ser");
         fm.getSavedIdList().clear();
         fm.neueFahrzeugeHinzufuegen(6, "Ford", "Fokus", 2014, 249, "adfafaf3d");
+        File file = new File("Junit.ser");
+        file.delete();
     }
 
     @Test
