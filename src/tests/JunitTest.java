@@ -31,6 +31,22 @@ public class JunitTest {
         file.delete();
     }
 
+    @Test
+    public void testSerialisationInFolder() {
+        FahrzeugManagement fm = new FahrzeugManagement("Folder1/f2/f3/file");
+        fm.getSavedIdList().clear();
+        fm.neueFahrzeugeHinzufuegen(1, "Audi", "A6", 2015, 995, "2015-01-20");
+        fm.neueFahrzeugeHinzufuegen(2, "Mercedes", "Fyra", 2011, 6666);
+        SerializedFahrzeugDAO sfd = new SerializedFahrzeugDAO("Folder1/f2/f3/file");
+        assertEquals(995.00, sfd.getFahrzeugbyId(1).getGrundpreis(), 0);
+        assertEquals(6666.00, sfd.getFahrzeugbyId(2).getGrundpreis(), 0);
+
+        new File("Folder1/f2/f3/file").delete();
+        new File("Folder1/f2/f3").delete();
+        new File("Folder1/f2/").delete();
+        new File("Folder1").delete();
+
+    }
 
     @Test
     public void testDel() {
