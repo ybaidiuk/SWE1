@@ -60,6 +60,18 @@ public class JunitTest {
     }
 
     @Test
+    public void testGetById() { // get Fahrzeug mit  solche Id soll null zuruck lliefern!
+        SerializedFahrzeugDAO fm = new SerializedFahrzeugDAO("Junit.ser");
+        File file = new File("Junit.ser");
+        file.delete();
+        LKW lkw = new LKW(1, "Mercedes", "Fyra", 2011, 10000);
+        fm.speichereFahrzeug(lkw);
+        assertEquals(null, fm.getFahrzeugbyId(9998));
+
+
+    }
+
+    @Test
     public void testCount() {
         FahrzeugManagement fm2 = new FahrzeugManagement("Junit.ser");
         fm2.getSavedIdList().clear();

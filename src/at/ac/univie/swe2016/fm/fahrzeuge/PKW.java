@@ -45,7 +45,7 @@ public class PKW extends Fahrzeug implements Serializable {
             throw new IllegalArgumentException("Can't recognise Datum");
         }
         if (datum.getYear() < getBaujahr()) {
-            throw new IllegalArgumentException("Überprüfung Datum is altere als Baujahr");
+            throw new IllegalArgumentException("Ueberpruefung Datum is altere als Baujahr");
         }
     }
 

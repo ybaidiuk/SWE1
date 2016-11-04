@@ -20,8 +20,8 @@ public class FahrzeugClient {
 //    javadoc -d doc -encoding ISO-8859-1  @sources.txt
 
 //===================
-//    java FahrzeugClient a add lkw 1 Iveco "Eurocargo ML80E" 2014 18000.5
-//    java FahrzeugClient a add pkw 3 Volkswagen Beetle 2015 15000.00 2016-03-12
+//    java FahrzeugClient a/b add lkw 1 Iveco "Eurocargo ML80E" 2014 18000.5
+//    java FahrzeugClient a/b add pkw 3 Volkswagen Beetle 2015 15000.00 2015-03-12
 
     /**
      * @param args args [0] Pfad der Datenquelle. Falls die Datei/Ordner nicht existiert soll sie/er erstellt werden.
