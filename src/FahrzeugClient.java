@@ -1,11 +1,8 @@
 import at.ac.univie.swe2016.fm.FahrzeugManagement;
 import at.ac.univie.swe2016.fm.fahrzeuge.Fahrzeug;
-import at.ac.univie.swe2016.fm.fahrzeuge.LKW;
-import at.ac.univie.swe2016.fm.fahrzeuge.PKW;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Yevhen Baidiuk a1368277
@@ -27,6 +24,8 @@ public class FahrzeugClient {
      * @param args args [0] Pfad der Datenquelle. Falls die Datei/Ordner nicht existiert soll sie/er erstellt werden.
      *             args [1] Parameter: show, add, del, count, meanage, meanprice, oldest.
      *             Pro Aufruf muss jeweils nur eine Funktionalitoet ausgeführt werden.
+     *
+     *             auf 52 zeile nutze ich lambda expessions !!!!!!
      *             <p>
      *             param show          --- Alle Daten eines Fahrzeuges ausgeben
      *             param add lkw       ---  id   marke   modell   baujahr   grundpreis  LKW persistent hinzufuegen
@@ -50,11 +49,7 @@ public class FahrzeugClient {
                 case "show":
                     if (args.length == 2) {
                         List<Fahrzeug> list = fahrzeugManagement.getSavedIdList();
-
-                        for (Fahrzeug f : list) {
-                            System.out.println(f);
-                        }
-
+                        list.forEach(System.out::println);
 
                     } else if (args.length == 3)
                         fahrzeugManagement.alleDatenEinesFahrzeugAusgeben(Integer.parseInt(args[2]));

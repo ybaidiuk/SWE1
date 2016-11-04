@@ -71,6 +71,7 @@ public class SerializedFahrzeugDAO implements FahrzeugDAO {
     }
 
     /**
+     * aud 93 zeile nutze ich lambda expessions !!!!!!
      * speichereFahrzeug(Fahrzeug …)), alle Instanzvariablen des Fahrzeugobjektes gesetzt bzw. nicht leer sind.
      * Falls ein Wert fehlt, soll eine entsprechende IllegalArgumentException geworfen werden.
      * <p>
@@ -88,7 +89,8 @@ public class SerializedFahrzeugDAO implements FahrzeugDAO {
             }
         }
         savedIdList.add(fahrzeug);
-        Collections.sort(savedIdList);
+
+        Collections.sort(savedIdList, ((o1, o2) -> o1.getId() - o2.getId()));
         saveData();
     }
 

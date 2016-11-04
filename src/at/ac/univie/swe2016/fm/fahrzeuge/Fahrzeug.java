@@ -6,7 +6,7 @@ import java.util.Calendar;
 /**
  * Yevhen Baidiuk a1368277
  */
-public abstract class Fahrzeug implements Serializable, Comparable<Fahrzeug> {
+public abstract class Fahrzeug implements Serializable {
     static final long serialVersionUID = 111L;
 
 
@@ -118,7 +118,4 @@ public abstract class Fahrzeug implements Serializable, Comparable<Fahrzeug> {
      * @param f compare Fahrzeug
      * @return differenze
      */
-    public int compareTo(Fahrzeug f) {
-        return this.id - f.getId();
-    }
 }
