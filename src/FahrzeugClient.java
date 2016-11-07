@@ -42,7 +42,7 @@ public class FahrzeugClient {
      */
     public static void main(String[] args) {
         try {
-            DecimalFormat df = new DecimalFormat(".00");
+            DecimalFormat df = new DecimalFormat("0.00");
             FahrzeugManagement fahrzeugManagement = new FahrzeugManagement(args[0]);
 
 
@@ -59,12 +59,17 @@ public class FahrzeugClient {
 
 
                 case "add":
-                    if (args[2].equals("lkw")) {
-                        if (args.length != 8) throw new IllegalArgumentException("Arguments ist Falsh!");
-                        fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]));
-                    } else if (args[2].equals("pkw")) {
-                        if (args.length != 9) throw new IllegalArgumentException("Arguments ist Falsh!");
-                        fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]), args[8]);
+                    switch (args[2]) {
+                        case "lkw":
+                            if (args.length != 8) throw new IllegalArgumentException("Arguments ist Falsh!");
+                            fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]));
+                            break;
+                        case "pkw":
+                            if (args.length != 9) throw new IllegalArgumentException("Arguments ist Falsh!");
+                            fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]), args[8]);
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Arguments ist Falsh!");
                     }
                     break;
 
@@ -76,13 +81,13 @@ public class FahrzeugClient {
 
                 case "count":
                     if (args.length == 2)
-                        System.out.println(df.format(fahrzeugManagement.gesamtzahlFahrzeugeBerechnen()));
+                        System.out.println(fahrzeugManagement.gesamtzahlFahrzeugeBerechnen());
                     else if (args.length > 3)
                         throw new IllegalArgumentException("Arguments ist Falsh!");
                     else if (args[2].equals("lkw"))
-                        System.out.println(df.format(fahrzeugManagement.gesamtzahlDerLKWBerechnen()));
+                        System.out.println(fahrzeugManagement.gesamtzahlDerLKWBerechnen());
                     else if (args[2].equals("pkw"))
-                        System.out.println(df.format(fahrzeugManagement.gesamtzahlDerPKWBerechnen()));
+                        System.out.println(fahrzeugManagement.gesamtzahlDerPKWBerechnen());
                     else throw new IllegalArgumentException("Arguments ist Falsh");
                     break;
 
@@ -93,13 +98,13 @@ public class FahrzeugClient {
                     break;
                 case "meanprice":
                     if (args.length == 2)
-                        System.out.println(fahrzeugManagement.durchschnittsPreisallerFahrzeugeBerechnen());
+                        System.out.println(df.format(fahrzeugManagement.durchschnittsPreisallerFahrzeugeBerechnen()));
                     else if (args.length != 3)
                         throw new IllegalArgumentException("Arguments ist Falsh!");
                     else if (args[2].equals("lkw"))
-                        System.out.println(fahrzeugManagement.durchschnittsPreisAllerLkwBerechnen());
+                        System.out.println(df.format(fahrzeugManagement.durchschnittsPreisAllerLkwBerechnen()));
                     else if (args[2].equals("pkw"))
-                        System.out.println(fahrzeugManagement.durchschnittsPreisAllerPkwBerechnen());
+                        System.out.println(df.format(fahrzeugManagement.durchschnittsPreisAllerPkwBerechnen()));
                     break;
 
                 case "oldest":

@@ -12,9 +12,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by y.baidiuk on 07/10/2016.
- */
 public class JunitTest {
 
 

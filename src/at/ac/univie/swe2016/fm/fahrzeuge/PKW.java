@@ -18,7 +18,7 @@ public class PKW extends Fahrzeug implements Serializable {
      * hat Funkrion  "parse"  mit  die kann  daten  from String "1998-02-30" einnehhmmen .
      */
     private LocalDate datum;
-    private DecimalFormat df = new DecimalFormat(".00");
+    private DecimalFormat df = new DecimalFormat("0.00");
 
 
     public PKW(int id, String marke, String modell, int baujahr, double grundpreis, String datum) {

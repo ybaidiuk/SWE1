@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 public class LKW extends Fahrzeug implements Serializable {
 
     static final long serialVersionUID = 222L;
-    private DecimalFormat df = new DecimalFormat(".00");
+    private DecimalFormat df = new DecimalFormat("0.00");
 
     public LKW(int id, String marke, String modell, int baujahr, double grundpreis) {
         super(id, marke, modell, baujahr, grundpreis);
