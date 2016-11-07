@@ -1,6 +1,7 @@
 import at.ac.univie.swe2016.fm.FahrzeugManagement;
 import at.ac.univie.swe2016.fm.fahrzeuge.Fahrzeug;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class FahrzeugClient {
      */
     public static void main(String[] args) {
         try {
-
+            DecimalFormat df = new DecimalFormat(".00");
             FahrzeugManagement fahrzeugManagement = new FahrzeugManagement(args[0]);
 
 
@@ -75,20 +76,20 @@ public class FahrzeugClient {
 
                 case "count":
                     if (args.length == 2)
-                        System.out.println(fahrzeugManagement.gesamtzahlFahrzeugeBerechnen());
+                        System.out.println(df.format(fahrzeugManagement.gesamtzahlFahrzeugeBerechnen()));
                     else if (args.length > 3)
                         throw new IllegalArgumentException("Arguments ist Falsh!");
                     else if (args[2].equals("lkw"))
-                        System.out.println(fahrzeugManagement.gesamtzahlDerLKWBerechnen());
+                        System.out.println(df.format(fahrzeugManagement.gesamtzahlDerLKWBerechnen()));
                     else if (args[2].equals("pkw"))
-                        System.out.println(fahrzeugManagement.gesamtzahlDerPKWBerechnen());
+                        System.out.println(df.format(fahrzeugManagement.gesamtzahlDerPKWBerechnen()));
                     else throw new IllegalArgumentException("Arguments ist Falsh");
                     break;
 
                 case "meanage":
                     if (args.length != 2)
                         throw new IllegalArgumentException("Arguments ist Falsh!");
-                    System.out.println(fahrzeugManagement.durchschnittsAlterAllerFahrzeugeBerechnen());
+                    System.out.println(df.format(fahrzeugManagement.durchschnittsAlterAllerFahrzeugeBerechnen()));
                     break;
                 case "meanprice":
                     if (args.length == 2)
