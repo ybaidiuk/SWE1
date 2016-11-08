@@ -18,8 +18,9 @@ public class FahrzeugClient {
 //    javadoc -d doc -encoding ISO-8859-1  @sources.txt
 
 //===================
-//    java FahrzeugClient a/b add lkw 1 Iveco "Eurocargo ML80E" 2014 18000.5
-//    java FahrzeugClient a/b add pkw 3 Volkswagen Beetle 2015 15000.00 2015-03-12
+//    java FahrzeugClient a add lkw 1 Iveco "Eurocargo ML80E" 1999 18000.56
+//    java FahrzeugClient a add pkw 3 Volkswagen Beetle 2016 15000.03 2015-03-12
+//    java FahrzeugClient a show
 
     /**
      * @param args args [0] Pfad der Datenquelle. Falls die Datei/Ordner nicht existiert soll sie/er erstellt werden.
@@ -46,7 +47,7 @@ public class FahrzeugClient {
             FahrzeugManagement fahrzeugManagement = new FahrzeugManagement(args[0]);
 
 
-            switch (args[1]) {
+            switch (args[1].toLowerCase()) {
                 case "show":
                     if (args.length == 2) {
                         List<Fahrzeug> list = fahrzeugManagement.getSavedIdList();
@@ -59,7 +60,7 @@ public class FahrzeugClient {
 
 
                 case "add":
-                    switch (args[2]) {
+                    switch (args[2].toLowerCase()) {
                         case "lkw":
                             if (args.length != 8) throw new IllegalArgumentException("Arguments ist Falsh!");
                             fahrzeugManagement.neueFahrzeugeHinzufuegen(Integer.parseInt(args[3]), args[4], args[5], Integer.parseInt(args[6]), Double.parseDouble(args[7]));
