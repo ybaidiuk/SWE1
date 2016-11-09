@@ -11,6 +11,13 @@ import java.util.List;
 public class FahrzeugClient {
 
 // Diagramm
+//java FahrzeugClient a add lkw 5 Iveco "Eurocargo ML80E" 2011 18000.56
+//java FahrzeugClient a add lkw 6 Iveco "Eurocargo ML80E" 2012 18000.56
+//java FahrzeugClient a add lkw 7 Iveco "Eurocargo ML80E" 2013 18000.56
+//java FahrzeugClient a add lkw 8 Iveco "Eurocargo ML80E" 2014 18000.56
+//java FahrzeugClient a add lkw 9 Iveco "Eurocargo ML80E" 2015 18000.56
+//java FahrzeugClient a add lkw 10 Iveco "Eurocargo ML80E" 2016 18000.56
+//java FahrzeugClient a add lkw 11 Iveco "Eurocargo ML80E" 2017 18000.56
 
 //    =============
 //    find -name "*.java" > sources.txt
@@ -26,7 +33,7 @@ public class FahrzeugClient {
      * @param args args [0] Pfad der Datenquelle. Falls die Datei/Ordner nicht existiert soll sie/er erstellt werden.
      *             args [1] Parameter: show, add, del, count, meanage, meanprice, oldest.
      *             Pro Aufruf muss jeweils nur eine Funktionalitoet ausgeführt werden.
-     *
+     *             <p>
      *             auf 52 zeile nutze ich lambda expessions !!!!!!
      *             <p>
      *             param show          --- Alle Daten eines Fahrzeuges ausgeben
@@ -114,12 +121,24 @@ public class FahrzeugClient {
                     for (int i : aList)
                         System.out.println("Id: " + i);
                     break;
+                case "filter":
+                    if (args[2].toLowerCase().equals("age")) {
+                        if (args.length != 5) throw new IllegalArgumentException("Arguments ist Falsh!");
+
+                        List<Integer> listForFilter = fahrzeugManagement.filter(Integer.parseInt(args[3]), Integer.parseInt(args[4]));
+                        for (int i : listForFilter)
+                            System.out.println("Id: " + i);
+
+
+                    }
+                    break;
                 default:
+                    System.err.println("Parameter Fehlt");
                     System.exit(1);
             }
 
         } catch (IndexOutOfBoundsException e) {
-            System.err.println("Fellt Parameter");
+            System.err.println("Parameter Fehlt");
             System.exit(1);
         }
     }

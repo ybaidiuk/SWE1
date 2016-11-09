@@ -102,7 +102,7 @@ public class FahrzeugManagement {
      * @return DurchschnittsALTER aller Fahrzeuge berechnen
      */
     public double durchschnittsAlterAllerFahrzeugeBerechnen() {
-        if (gesamtzahlFahrzeugeBerechnen()==0) return 0;
+        if (gesamtzahlFahrzeugeBerechnen() == 0) return 0;
         double sum = 0;
         for (Fahrzeug f : savedIdList) {
             sum += f.getAlter();
@@ -115,7 +115,7 @@ public class FahrzeugManagement {
      * @return Durchschnittspreis aller Fahrzeuge berechnen
      */
     public double durchschnittsPreisallerFahrzeugeBerechnen() {
-        if (gesamtzahlFahrzeugeBerechnen()==0) return 0;
+        if (gesamtzahlFahrzeugeBerechnen() == 0) return 0;
         double sum = 0;
         for (Fahrzeug f : savedIdList) {
             sum += f.getPreis();
@@ -128,7 +128,7 @@ public class FahrzeugManagement {
      * @return Durchschnittspreis aller PLW berechnen
      */
     public double durchschnittsPreisAllerPkwBerechnen() {
-        if (gesamtzahlDerPKWBerechnen()==0) return 0;
+        if (gesamtzahlDerPKWBerechnen() == 0) return 0;
         double sum = 0;
         for (Fahrzeug f : savedIdList) {
             if (f instanceof PKW)
@@ -142,7 +142,7 @@ public class FahrzeugManagement {
      */
 
     public double durchschnittsPreisAllerLkwBerechnen() {
-        if (gesamtzahlDerLKWBerechnen()==0) return 0;
+        if (gesamtzahlDerLKWBerechnen() == 0) return 0;
         double sum = 0;
         for (Fahrzeug f : savedIdList) {
             if (f instanceof LKW)
@@ -178,6 +178,17 @@ public class FahrzeugManagement {
      */
     public List getSavedIdList() {
         return savedIdList;
+    }
+
+
+    public ArrayList<Integer> filter(int i, int k) {
+        ArrayList<Integer> integerArrayList = new ArrayList<>();
+        for (Fahrzeug f : savedIdList) {
+            if (f.getAlter() >= i && f.getAlter() <= k) {
+                integerArrayList.add(f.getId());
+            }
+        }
+        return integerArrayList;
     }
 
 }
